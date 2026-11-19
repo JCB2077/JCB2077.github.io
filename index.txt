@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>John Belford</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: a plain professional services page. Navy masthead, one reading column, samples set like exhibits in a report. */
+  --navy:#1b2d4a;
+  --ink:#1f2328;
+  --muted:#5b636e;
+  --bg:#ffffff;
+  --panel:#f4f6f9;
+  --rule:#d9dee5;
+  --on-navy:#ffffff;
+  --on-navy-muted:#c5cfdd;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:Consolas,"Courier New",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --navy:#0f1a2c;--ink:#e3e7ec;--muted:#a3acb8;--bg:#151a21;--panel:#1d242d;--rule:#2f3843;
+    --on-navy:#f2f4f7;--on-navy-muted:#a9b6c8;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --navy:#0f1a2c;--ink:#e3e7ec;--muted:#a3acb8;--bg:#151a21;--panel:#1d242d;--rule:#2f3843;
+  --on-navy:#f2f4f7;--on-navy-muted:#a9b6c8;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans)}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;text-wrap:balance}
+p{margin:0}
+.col{max-width:860px;margin:0 auto;padding:0 20px}
+
+.mast{background:var(--navy);color:var(--on-navy);padding:44px 0 36px}
+.mast .col{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px}
+.mast h1{font-size:clamp(30px,5vw,40px);line-height:1.1}
+.mast .role{color:var(--on-navy-muted);margin-top:6px;font-size:18px}
+.mast .reach{text-align:right;font-size:16px;line-height:1.7}
+.mast .reach a{color:var(--on-navy);text-decoration:none}
+.mast .reach a:hover{text-decoration:underline}
+@media (max-width:600px){.mast .reach{text-align:left}}
+
+main section{padding:40px 0;border-bottom:1px solid var(--rule)}
+main section:last-of-type{border-bottom:0}
+h2{font-size:26px;margin-bottom:14px}
+h3{font-size:20px}
+.prose{max-width:66ch}
+.prose + .prose{margin-top:12px}
+
+.svc{display:grid;grid-template-columns:1fr;gap:0}
+.svc-row{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:8px 24px;padding:16px 0;border-top:1px solid var(--rule)}
+.svc-row:last-child{border-bottom:1px solid var(--rule)}
+.svc-row p{color:var(--muted);margin-top:4px;max-width:58ch}
+.svc-row .price{font-size:15px;color:var(--ink);text-align:right;padding-top:3px}
+@media (max-width:600px){.svc-row{grid-template-columns:1fr}.svc-row .price{text-align:left;padding-top:0}}
+
+.exhibit{margin-top:28px}
+.exhibit:first-of-type{margin-top:6px}
+.exhibit > p{margin-top:6px;max-width:66ch;color:var(--muted)}
+.panel{margin-top:14px;background:var(--panel);border:1px solid var(--rule);padding:18px;overflow-x:auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.panel h4{font:600 15px var(--sans);margin:0 0 8px}
+.chan{list-style:none;padding:0;margin:0;columns:2;column-gap:20px;font-size:15px}
+.chan li{padding:3px 0;break-inside:avoid}
+.caption{font-size:14px;font-style:italic;color:var(--muted);margin-top:10px}
+
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td{font-weight:600;border-top:2px solid var(--ink);border-bottom:0}
+pre{margin:0;font:13.5px/1.5 var(--mono);white-space:pre;overflow-x:auto}
+
+.contact dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 20px;margin:14px 0 0}
+.contact dt{font-weight:600}
+.contact dd{margin:0}
+
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px}
+footer .col{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--muted)}
+
+.wiki .infobox{float:right;width:220px;margin:0 0 12px 16px;font-size:14px;background:var(--bg);border:1px solid var(--rule)}
+.wiki .infobox caption{font-weight:600;padding:6px;text-align:left}
+.wiki .clear{clear:both}
+@media (max-width:600px){.wiki .infobox{float:none;width:100%;margin:0 0 12px}}
+.back{display:inline-block;margin-bottom:14px;color:var(--on-navy-muted);font-size:15px;text-decoration:none}
+.back:hover{text-decoration:underline}
+[hidden]{display:none !important}
+button.reveal{font:inherit;color:inherit;background:transparent;border:1px solid var(--rule);border-radius:4px;padding:2px 10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+button.reveal:hover{border-color:var(--muted)}
+button.reveal:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div id="view-pro">
+<header class="mast" id="top">
+  <div class="col">
+    <div>
+      <h1>John Belford</h1>
+      <p class="role">YouTube channel management, online tutoring, tech help and automation</p>
+    </div>
+    <div class="reach">
+      <a href="#contact">Contact details</a><br>
+      South Florida, working remotely
+    </div>
+  </div>
+</header>
+
+<main class="col">
+<section id="about">
+  <h2>About</h2>
+  <p class="prose">I hold a BS in Business Administration in Accounting and spent over a year in IT support at Nova Southeastern University, upgrading hardware and software and fixing network, software and hardware problems for faculty, staff and students. I build Excel macros and Python scripts that take repetitive data work off your hands, and I help people sort out their computers remotely.</p>
+  <p class="prose">From September 2025 to July 2026 I worked at Renn Media on faceless YouTube channels, starting as a scriptwriter and becoming team leader over up to three teams and 18 channels. At their peak, those channels drew 3.5 million combined views a month.</p>
+  <p class="prose">I also work in classrooms across grade levels as a teacher and substitute. That's where my tutoring and my classroom resources come from.</p>
+</section>
+
+<section id="services">
+  <h2>Services</h2>
+  <div class="svc">
+    <div class="svc-row">
+      <div><h3>YouTube channel management</h3><p>Ideation and topic validation, script and video review, KPI tracking and channel health checks, and hiring and running editors and team managers for faceless channels.</p></div>
+      <div class="price">$400 a month, part time</div>
+    </div>
+    <div class="svc-row">
+      <div><h3>Online tutoring</h3><p>One-on-one sessions over video in any subject for students from Pre-K through grade 12, plus college accounting coursework. Homework help, test review and study skills, matched to the student's grade level.</p></div>
+      <div class="price">$40 an hour</div>
+    </div>
+    <div class="svc-row">
+      <div><h3>Remote tech help</h3><p>Microsoft 365 and email setup, new computer setup, and troubleshooting for software, printers and Wi-Fi, done over a screen share for individuals and small offices.</p></div>
+      <div class="price">$30 an hour</div>
+    </div>
+    <div class="svc-row">
+      <div><h3>Spreadsheet and data automation</h3><p>Excel macros and Python scripts that clean exports, merge files and produce recurring reports, delivered with plain-English instructions.</p></div>
+      <div class="price">$40 to $220 per job, quoted up front</div>
+    </div>
+    <div class="svc-row">
+      <div><h3>Classroom resources</h3><p>Ready-to-use career awareness and exploration activities from Pre-K through grade 12, each built for a single class period, with a rubric or checklist.</p></div>
+      <div class="price">Quoted per project</div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <h2>Selected work</h2>
+
+  <div class="exhibit">
+    <h3>Faceless YouTube channel operations, Renn Media</h3>
+    <p>As team leader I ran ideation, quality control and staffing across a multi-team operation. Every concept had to pass format and topic validation, a check for demand across other creators, and at least three layers of review before it reached executive approval.</p>
+    <div class="panel grid2">
+      <div>
+        <h4>At peak</h4>
+        <table>
+          <tbody>
+            <tr><td>Channels managed</td><td class="n">18</td></tr>
+            <tr><td>Teams</td><td class="n">3</td></tr>
+            <tr><td>Combined monthly views (April to May 2026)</td><td class="n">3.5 million</td></tr>
+            <tr><td>Script length and turnaround as a writer</td><td>Up to 7,000 characters, 48-hour cycle</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Some of the channels</h4>
+        <ul class="chan">
+          <li><a href="https://www.youtube.com/@ytvaderexplains">@ytvaderexplains</a></li>
+          <li><a href="https://www.youtube.com/@ytnickexplains">@ytnickexplains</a></li>
+          <li><a href="https://www.youtube.com/@YTLeonExplains">@YTLeonExplains</a></li>
+          <li><a href="https://www.youtube.com/@ThrallExplains">@ThrallExplains</a></li>
+          <li><a href="https://www.youtube.com/@peasantharold">@peasantharold</a></li>
+          <li><a href="https://www.youtube.com/@FreddyExplainsFNAF">@FreddyExplainsFNAF</a></li>
+          <li><a href="https://www.youtube.com/@DrBrightExplains">@DrBrightExplains</a></li>
+          <li><a href="https://www.youtube.com/@EzioExplains">@EzioExplains</a></li>
+          <li><a href="https://www.youtube.com/@scifi-theory">@scifi-theory</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="caption">Figures are for all channels I managed combined.</p>
+  </div>
+
+  <div class="exhibit">
+    <h3>Transaction cleanup script</h3>
+    <p>A Python script that standardizes dates and amounts in a bank export, flags duplicate imports without deleting them, and categorizes each line from a rules file.</p>
+    <div class="panel grid2">
+      <div>
+        <h4>Input</h4>
+<pre>Date,Description,Amount
+07/01/2026,SQUARE INC   DEPOSIT 0701,"$1,842.50"
+2026-07-02,AUTOZONE #4471 PEMBROKE PINES,(186.34)
+"Jul 3, 2026",Shell Oil 57442,(64.18)
+07/08/2026,SQUARE INC DEPOSIT 0708,"2,105.75"
+07/08/2026,SQUARE INC DEPOSIT 0708,"2,105.75"
+7/22/26,T-MOBILE  AUTOPAY,(85.00)</pre>
+      </div>
+      <div>
+        <h4>Output</h4>
+<pre>date,description,amount,category,duplicate
+2026-07-01,SQUARE INC DEPOSIT,1842.50,Sales,
+2026-07-02,AUTOZONE PEMBROKE PINES,-186.34,Supplies,
+2026-07-03,SHELL OIL,-64.18,Fuel,
+2026-07-08,SQUARE INC DEPOSIT,2105.75,Sales,
+2026-07-08,SQUARE INC DEPOSIT,2105.75,Sales,Yes
+2026-07-22,T-MOBILE AUTOPAY,-85.00,Phone &amp; Internet,</pre>
+      </div>
+    </div>
+    <p class="caption">Sample prepared with fictional transactions.</p>
+  </div>
+
+  <div class="exhibit">
+    <h3>Career activities, Pre-K to grade 12</h3>
+    <p>One activity for each grade band, each built for a single class period and scaled to what students at that age can do: matching and drawing for the youngest, comparing real education costs for high school.</p>
+    <div class="panel">
+      <table>
+        <thead><tr><th>Grades</th><th>Activity</th><th>Students</th><th>Assessment</th></tr></thead>
+        <tbody>
+          <tr><td>Pre-K to 2</td><td>Community Helpers: Who Helps Us?</td><td>Match six helpers to their tools, then draw themselves helping someone</td><td>Four-skill observation checklist</td></tr>
+          <tr><td>3 to 5</td><td>Job Detectives: Skills at Work</td><td>Read job cards in groups, find the skills each job needs and link them to school subjects</td><td>16-point rubric</td></tr>
+          <tr><td>6 to 8</td><td>Career Snapshot: Research One Career</td><td>Research one career in the Occupational Outlook Handbook and judge whether it fits them</td><td>20-point rubric</td></tr>
+          <tr><td>9 to 12</td><td>Pathway Plan: Two Routes to One Career</td><td>Compare two education routes, such as a degree and an apprenticeship, by time and cost, then choose one</td><td>24-point rubric</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Each activity includes teacher notes, student pages and an answer guide.</p>
+  </div>
+
+</section>
+
+<section id="approach">
+  <h2>How I work</h2>
+  <p class="prose">I confirm the scope and price before starting, and I review every deliverable myself before it reaches you. I use software tools, including AI, to speed up repetitive steps; if you'd prefer I didn't on your project, tell me and I'll work without them.</p>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <p class="prose">Email is the fastest way to reach me. Tell me what you need, and I'll reply with a scope and a price.</p>
+  <dl>
+    <dt>Email</dt><dd><button type="button" class="reveal" data-kind="mail" id="show-email-pro">Show email address</button></dd>
+    <dt>Phone</dt><dd><button type="button" class="reveal" data-kind="tel" id="show-phone">Show phone number</button></dd>
+  </dl>
+</section>
+</main>
+
+<footer>
+  <div class="col">
+    <span>All samples use fictional data.</span>
+    <a href="#casual">Side projects</a>
+  </div>
+</footer>
+</div>
+
+<div id="view-casual" hidden>
+<header class="mast">
+  <div class="col">
+    <div>
+      <a class="back" href="#top">Back to main page</a>
+      <h1>Game modding</h1>
+      <p class="role">Hearts of Iron IV and Fallout mod work</p>
+    </div>
+    <div class="reach"><a href="#modcontact">Contact details</a></div>
+  </div>
+</header>
+<main class="col">
+<section>
+  <h2>What I do</h2>
+  <p class="prose">I write focus trees and localisation, source GFX, and render equipment icons from Fallout weapon models with my own tool. I also maintain a fork of pdxparse, which reads mod files and generates wiki pages for focus trees, national spirits, events and equipment. I use it for content on the Old World Blues, Equestria at War, Red Flood and The New Order wikis, and I can use it to set up and populate your mod's wiki.</p>
+</section>
+<section>
+  <h2>Sample output</h2>
+  <div class="exhibit">
+    <h3>Republic of Calder focus tree, Coastal Defense branch</h3>
+    <p>Generated from the mod's focus file, then checked by hand.</p>
+    <div class="panel wiki">
+      <table class="infobox">
+        <caption>Calder Pattern 9 Rifle</caption>
+        <tr><th>Type</th><td>Infantry equipment</td></tr>
+        <tr><th>Year</th><td class="n">1938</td></tr>
+        <tr><th>Production cost</th><td class="n">0.55</td></tr>
+        <tr><th>Soft attack</th><td class="n">4</td></tr>
+        <tr><th>Defense</th><td class="n">22</td></tr>
+        <tr><th>Reliability</th><td class="n">85%</td></tr>
+      </table>
+      <table>
+        <thead><tr><th>Focus</th><th class="n">Days</th><th>Prerequisites</th><th>Effects</th></tr></thead>
+        <tbody>
+          <tr><td>Harbor Batteries</td><td class="n">70</td><td>Rebuild the Harbors</td><td>Add 2 coastal forts in Port Ardent</td></tr>
+          <tr><td>The Pattern 9 Contract</td><td class="n">70</td><td>Harbor Batteries</td><td>Unlock Calder Pattern 9 Rifle; add 1,500 to stockpile</td></tr>
+          <tr><td>Rail to the Interior</td><td class="n">105</td><td>Civilian Works Program</td><td>+1 infrastructure in every owned state; unlocks Interior Development decisions</td></tr>
+        </tbody>
+      </table>
+      <div class="clear"></div>
+    </div>
+    <p class="caption">Sample using a fictional mod and country.</p>
+  </div>
+</section>
+<section id="modcontact">
+  <h2>Rates and contact</h2>
+  <p class="prose">$20 an hour for focus trees, localisation, GFX, and wiki setup and population, billed only for the time I actually spend. You get an estimate before I start, and I'll tell you before going past it.</p>
+  <p class="prose" style="margin-top:12px">Email: <button type="button" class="reveal" data-kind="mail" id="show-email-mod">Show email address</button></p>
+</section>
+</main>
+<footer><div class="col"><a href="#top">Back to main page</a></div></footer>
+</div>
+
+<script>
+(function(){
+  var pro = document.getElementById("view-pro"), cas = document.getElementById("view-casual");
+  function show(){
+    var c = location.hash === "#casual" || location.hash === "#modcontact";
+    pro.hidden = c; cas.hidden = !c;
+    if (location.hash === "#casual" || location.hash === "#top") window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+  var K = {mail:[116,118,106,53,115,112,104,116,110,71,61,57,107,121,118,109,115,108,105,117,111,118,113], tel:[61,60,62,61,52,57,55,57,39,48,59,60,62,47], telLink:[61,60,62,61,57,55,57,59,60,62,56,50]};
+  function dec(a){ return a.map(function(n){ return String.fromCharCode(n-7); }).reverse().join(""); }
+  document.querySelectorAll("button.reveal").forEach(function(b){
+    b.addEventListener("click", function(){
+      var a = document.createElement("a");
+      if (b.dataset.kind === "mail"){ var m = dec(K.mail); a.href = "mai" + "lto:" + m; a.textContent = m; }
+      else { a.href = "te" + "l:" + dec(K.telLink); a.textContent = dec(K.tel); }
+      b.replaceWith(a);
+    });
+  });
+  show();
+})();
+</script>
+</body>
+</html>
